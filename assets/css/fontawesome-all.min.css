@@ -1835,6 +1835,7 @@
  }
  
  .fa-envelope:before {
+     margin-right: 5px;
      content: "\f0e0"
  }
  
