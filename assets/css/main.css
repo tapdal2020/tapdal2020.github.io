@@ -29,6 +29,7 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+
 body {
 	line-height: 1;
 }
@@ -99,7 +100,7 @@ input, select, textarea {
 	}
 
 	body {
-		background: #f4f4f4;
+		background: #340000;
 	}
 
 		body.is-preload *, body.is-preload *:before, body.is-preload *:after {
@@ -116,7 +117,7 @@ input, select, textarea {
 /* Type */
 
 	body, input, select, textarea {
-		color: #646464;
+		color:#333;
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 14pt;
 		font-weight: 400;
@@ -168,7 +169,7 @@ input, select, textarea {
 		-webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 		-ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 		transition: color 0.2s ease, border-bottom-color 0.2s ease;
-		border-bottom: dotted 1px rgba(160, 160, 160, 0.65);
+		border-bottom: dotted 1px white;
 		color: inherit;
 		text-decoration: none;
 	}
@@ -182,11 +183,11 @@ input, select, textarea {
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #2ebaae !important;
+			color: rgba(160, 160, 160, 0.65) !important;
 		}
 
 			a:hover:before {
-				color: #2ebaae !important;
+				color: rgba(160, 160, 160, 0.65) !important;
 			}
 
 	strong, b {
@@ -203,7 +204,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #3c3b3b;
+		color: #333;
 		font-family: "Raleway", Helvetica, sans-serif;
 		font-weight: 800;
 		letter-spacing: 0.25em;
@@ -1892,7 +1893,7 @@ input, select, textarea {
 		button:hover,
 		.button:hover {
 			box-shadow: inset 0 0 0 1px #2ebaae;
-			color: #2ebaae !important;
+			color: #340000 !important;
 		}
 
 			input[type="submit"]:hover:active,
@@ -2246,6 +2247,7 @@ input, select, textarea {
 		text-decoration: none;
 		border-bottom: none;
 		position: relative;
+		
 	}
 
 		.icon:before {
@@ -2259,6 +2261,7 @@ input, select, textarea {
 			text-transform: none !important;
 			font-family: 'Font Awesome 5 Free';
 			font-weight: 400;
+			color:#333;
 		}
 
 		.icon > .label {
@@ -2759,11 +2762,13 @@ input, select, textarea {
 				flex-grow: 1;
 				-ms-flex: 1;
 				padding: 3.75em 3em 3.3em 3em;
+				
 			}
 
 				.post > header .title h2 {
 					font-weight: 900;
 					font-size: 1.5em;
+					color:#333;
 				}
 
 				.post > header .title > :last-child {
@@ -3382,7 +3387,15 @@ input, select, textarea {
 		margin-right: 3em;
 		min-width: 22em;
 		width: 22em;
+		color:white;
 	}
+		#sidebar .h1,h2{
+			color:white;
+		}
+
+		#sidebar .icon:before{
+			color:white;
+		}
 
 		#sidebar > * {
 			border-top: solid 1px rgba(160, 160, 160, 0.3);
