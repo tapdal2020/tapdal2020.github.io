@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Musication</title>
+    <link href="css/navBarStyle.css" rel="stylesheet" type="text/css">
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyDLP_ZOh8DY6dMavHlwxpg73yG4JuGr4kA",
+        authDomain: "musication-41415.firebaseapp.com",
+        databaseURL: "https://musication-41415.firebaseio.com",
+        projectId: "musication-41415",
+        storageBucket: "musication-41415.appspot.com",
+        messagingSenderId: "962313923900"
+    };
+    firebase.initializeApp(config);
+    </script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    <script type="text/javascript">
+      // FirebaseUI config.
+      var uiConfig = {
+        signInSuccessUrl: 'index.html',
+        signInOptions: [
+          // Leave the lines as is for the providers you want to offer your users.
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        ],
+        // tosUrl and privacyPolicyUrl accept either url string or a callback
+        // function.
+        // Terms of service url/callback.
+        tosUrl: '<your-tos-url>',
+        // Privacy policy url/callback.
+        privacyPolicyUrl: function() {
+          window.location.assign('<your-privacy-policy-url>');
+        }
+      };
+
+      // Initialize the FirebaseUI Widget using Firebase.
+      var ui = new firebaseui.auth.AuthUI(firebase.auth());
+      // The start method will wait until the DOM is loaded.
+      ui.start('#firebaseui-auth-container', uiConfig);
+    </script>
+  </head>
+  <body>
+    <div>
+        <nav>
+            <ul class="navBar">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="map.html">Musications</a></li>
+                    <li style="float:right"><a id ="topRight" href="fbLogin.html">Login</a></li>
+            </ul>
+        </nav>
+    </div>
+    
+    <div id="firebaseui-auth-container"></div>
+  </body>
+</html>

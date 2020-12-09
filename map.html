@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase.js"></script>
+    <script src="js/initFirebase.js"></script>
+
+    <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+    <meta charset="utf-8">
+    <link href="/assets/css/buttonAnimation.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/indexStyle.css" rel="stylesheet" type="text/css">
+    <link href="/assets/css/navBarStyle.css" rel="stylesheet" type="text/css">
+
+    <title>Musications</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <style>
+
+      #map {
+        height: 100%;
+      }
+
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+            <nav>
+                    <ul class="navBar">
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="map.html">Musications</a></li>
+                            <li style="float:right"><a id ="topRight" href="fbLogin.html">Login</a></li>
+                    </ul>
+            </nav>
+            <div id="loader-container">
+                    <div class="loader">
+                            <div class="loader">
+                                    <div class="loader">
+                                            <div class="loader">
+
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+            </div>
+            <div id="main_button" class="round-button">Music</div>
+
+    </div>
+
+    <div id="map"></div>
+    <script>
+
+    var database = firebase.database();
+    var usersMusications = [];
+    var map, infoWindow;
+    var songName = [ ];
+    var latitude = [ ];
+    var longitude = [ ];
+    var artist = [ ];
+
+    firebase.auth().onAuthStateChanged(function(user){
+
+      if(user){
+          $("#topRight").css("display","none");
+          $("#logoutButton").css("display","inline-block");
+
+          console.log("logged in " + user.uid)
+
+          database.ref('Users/'+user.uid).once("value",function(snapshot){
+              var userData = snapshot.val();
+              usersMusications = userData.musications;
+              console.log("assigned");
+              console.log(usersMusications);
+              console.log(Object.keys(usersMusications));
+
+              console.log(Object.values(usersMusications));
+
+              const values = Object.values(usersMusications);
+              for (const key of values) {
+                songName.push(key.song);
+                artist.push(key.artist);
+                latitude.push(key.latitude);
+                longitude.push(key.longitude);
+
+              //console.log(key)
+              }
+
+              //console.log(values);
+              //songName.push(values[0].song);
+              console.log(songName);
+              console.log(artist);
+              console.log(latitude);
+              console.log(longitude);
+
+              // remove empty string coordinates
+              // for( var i = 0; i < latitude.length; i++){
+              //      if ( latitude[i] === " ") {
+              //        latitude.splice(i, 1);
+              //        longitude.splice(i, 1);
+              //      }
+              //   }
+              //
+              //   console.log(latitude);
+              //   console.log(longitude);
+              //
+              // if ( latitude[i] != " ") {
+              //       initMap();
+              // }
+
+              initMap();
+
+
+        });
+
+
+      }
+
+      else{
+              $("#topRight").css("display","block");
+              $("#logoutButton").css("display","none");
+              console.log("No user signed in")
+      }
+
+    });
+
+
+    function initMap() {
+
+          map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: 30.6280, lng: -96.3344},
+          zoom: 13
+          });
+
+          var locations = []
+
+          for (var i = 0; i < songName.length; i++) {
+          locations.push( {lat: latitude[i], lng: longitude[i]})
+          }
+          console.log(locations)
+          for (var i = 0; i < songName.length; i++) {
+          if (latitude[i+1] === latitude[i] && longitude[i+1] === longitude[i]){
+                locations[i].lat = locations[i].lat + (Math.random() / 5000);
+                locations[i].lng = locations[i].lng + (Math.random() / 5000);
+
+          }
+          console.log(locations)
+
+          var infoWin = new google.maps.InfoWindow();
+
+          var markers = locations.map(function(location, i) {
+                var marker = new google.maps.Marker({
+                      position: location
+                });
+
+                google.maps.event.addListener(marker, 'click', function(evt) {
+                      infoWin.setContent(songName[i] + ' by ' + artist[i]);
+                      infoWin.open(map, marker);
+                })
+
+                return marker;
+
+          });
+
+          }
+
+          var markerCluster = new MarkerClusterer(map, markers,
+          {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+
+
+    }
+
+    </script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js">
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2iYot3SRR0JPWbeb61X4UuibcByImwEY&callback=initMap">
+    </script>
+
+  </body>
+</html>

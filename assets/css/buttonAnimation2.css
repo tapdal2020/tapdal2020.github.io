@@ -1,0 +1,21 @@
+#loader-containerTwo {
+ width:200px;
+ height:200px;
+ position: absolute;
+ transform: translate(-30%,-30%);
+ top:50%;
+ left:70%;	
+}
+
+.loaderTwo {
+ width: calc(100% - 16px);
+ height: calc(100% - 16px);
+ border: 8px solid #162534;
+ border-top: 8px solid #09f;
+ border-radius: 50%;
+ animation: rotate 5s linear infinite;
+}
+
+@keyframes rotate {
+100% {transform: rotate(360deg);}
+} 
