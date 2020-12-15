@@ -338,13 +338,13 @@ input, select, textarea {
 	  }
 	  
 	  .clock .hour, .hr{
-		width: 160px;
-		height: 160px;
+		width: 140px;
+		height: 140px;
 	  }
 	  
 	  .clock .minute, .min{
-		width: 190px;
-		height: 190px;
+		width: 220px;
+		height: 220px;
 	  }
 	  
 	  .clock .second, .sec{
@@ -363,7 +363,7 @@ input, select, textarea {
 		content: "";
 		position: absolute;
 		width: 8px;
-		height: 70px;
+		height: 75px;
 		background: #091921;
 		z-index: 11;
 		border-radius: 6px 6px 0 0;
@@ -372,8 +372,8 @@ input, select, textarea {
 	  .min:before{
 		content: "";
 		position: absolute;
-		width: 4px;
-		height: 90px;
+		width: 6px;
+		height: 110px;
 		background: #091921;
 		z-index: 11;
 		border-radius: 6px 6px 0 0;
